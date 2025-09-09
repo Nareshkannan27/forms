@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,45 +98,48 @@
       margin-top: 5px;
     }
 
-.rating {
-  direction: rtl; /* Right to left for correct order */
-  display: inline-block;
-}
+    .rating {
+      direction: rtl;
+      display: inline-block;
+    }
 
-.stars {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    cursor: pointer;
-  }
+    .stars {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      cursor: pointer;
+    }
 
-  .stars span {
-    font-size: 30px;
-    color: lightgray;
-    transition: color 0.2s ease;
-  }
+    .stars span {
+      font-size: 30px;
+      color: lightgray;
+      transition: color 0.2s ease;
+    }
 
-  .stars span.selected,
-  .stars span.hovered {
-    color: gold;
-  }
+    .stars span.selected,
+    .stars span.hovered {
+      color: gold;
+    }
 
-  .question-block {
-    margin-bottom: 20px;
-  }
-  .sub-question {
-  margin: 10px 0;
-}
- .modal {
+    .question-block {
+      margin-bottom: 20px;
+    }
+
+    .sub-question {
+      margin: 10px 0;
+    }
+
+    .modal {
       display: none;
       position: fixed;
       z-index: 1000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
+      left: 0; 
+      top: 0;
+      width: 100%; 
+      height: 100%;
       background-color: rgba(0,0,0,0.5);
     }
 
-    /* Modal Content */
     .modal-content {
       background-color: white;
       margin: 15% auto;
@@ -154,13 +156,6 @@
       justify-content: space-around;
     }
 
-    button {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
     button.danger {
       background-color: #d93025;
       color: white;
@@ -169,77 +164,99 @@
     button:hover {
       opacity: 0.9;
     }
+
     form {
       margin-bottom: 20px;
     }
-  .footer{
-  padding: 20px;
-  background-color: #f3efff;
-  text-align: center;
-  font-size: 14px;
-  color: #3c4043;
-  border-top: 1px solid #ddd;
-  position: relative;
-}
 
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  max-width: 700px;
-  margin: 0 auto 15px;
-}
+    .footer{
+      padding: 20px;
+      background-color: #f3efff;
+      text-align: center;
+      font-size: 14px;
+      color: #3c4043;
+      border-top: 1px solid #ddd;
+      position: relative;
+    }
 
-.footer button {
-  background-color: #673ab7;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 14px;
-  border-radius: 4px;
-  cursor: pointer;
-}
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      max-width: 700px;
+      margin: 0 auto 15px;
+    }
 
-.footer a {
-  color: #673ab7;
-  text-decoration: none;
-  margin: 0 5px;
-}
+    .footer button {
+      background-color: #673ab7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-.footer a:hover {
-  text-decoration: underline;
-}
+    .footer a {
+      color: #673ab7;
+      text-decoration: none;
+      margin: 0 5px;
+    }
 
-.footer-logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: #5f6368;
-  margin-top: 15px;
-}
+    .footer a:hover {
+      text-decoration: underline;
+    }
 
-.footer-small {
-  font-size: 12px;
-  color: #5f6368;
-}
+    .footer-logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: #5f6368;
+      margin-top: 15px;
+    }
 
-.footer-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
+    .footer-small {
+      font-size: 12px;
+      color: #5f6368;
+    }
 
+    .footer-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
 
+    .admin-btn {
+      text-align: right;
+      margin-bottom: 20px; /* Changed from margin-top to margin-bottom */
+    }
 
+    .admin-btn button {
+      background: #673ab7;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
 
+    .admin-btn button:hover {
+      background: #5a2ea6;
+    }
   </style>
 </head>
 <body>
-
   <div class="container">
+    <div class="admin-btn">
+      <button type="button" onclick="openAdmin()">🔐 Admin Login</button>
+    </div>
+    
     <h2>A Study on Customer perception of various children's Health Drinks in Chidambaram Town</h2>
     <p class="description">Please fill out the form. Fields marked with <span class="required">*</span> are required.</p>
-
+    
     <form id="questionnaireForm">
       <!-- Question 1 -->
       <div class="question-block">
@@ -261,47 +278,46 @@
 
       <!-- Question 3-->
       <div class="question-block">
-        <label>3.Age <span class="required">*</span></label>
+        <label>3. Age <span class="required">*</span></label>
         <div class="options">
           <label><input type="radio" name="Age" value="Below 10"> Below 10</label>
           <label><input type="radio" name="Age" value="10-12"> 10-12</label>
           <label><input type="radio" name="Age" value="13-15"> 13-15</label>
           <label><input type="radio" name="Age" value="16-18"> 16-18</label>
         </div>
-        <div class="error" id="genderError"></div>
+        <div class="error" id="ageError"></div>
       </div>
-
 
       <!-- Question 4-->
-        <div class="question-block">
-        <label for="class/Grade">4.class/Grade <span class="required">*</span></label>
-        <input type="text" id="class/Grade" name="class/Grade" required />
-        <div class="error" id="nameError"></div>
+      <div class="question-block">
+        <label for="classGrade">4. Class/Grade <span class="required">*</span></label>
+        <input type="text" id="classGrade" name="classGrade" required />
+        <div class="error" id="classError"></div>
       </div>
-    
 
       <!-- Question 5-->
       <div class="question-block">
-        <label>5.School type <span class="required">*</span></label>
+        <label>5. School type <span class="required">*</span></label>
         <div class="options">
-          <label><input type="radio" name="School type" value="Government"> Government</label>
-          <label><input type="radio" name="School type" value="Private"> private</label>
-          <label><input type="radio" name="School type" value="others"> Others</label>
+          <label><input type="radio" name="schoolType" value="Government"> Government</label>
+          <label><input type="radio" name="schoolType" value="Private"> Private</label>
+          <label><input type="radio" name="schoolType" value="Others"> Others</label>
         </div>
-        <div class="error" id="genderError"></div>
+        <div class="error" id="schoolTypeError"></div>
       </div>
 
       <!-- Question 6-->
       <div class="question-block">
-        <label>6.Do you consume health drinks? <span class="required">*</span></label>
+        <label>6. Do you consume health drinks? <span class="required">*</span></label>
         <div class="options">
-          <label><input type="radio" name="Do you consume health drinks?" value="Yes"> Yes </label>
-          <label><input type="radio" name="Do you consume health drinks?" value="No"> No</label>
+          <label><input type="radio" name="consumeHealthDrinks" value="Yes"> Yes </label>
+          <label><input type="radio" name="consumeHealthDrinks" value="No"> No</label>
         </div>
-        <div class="error" id="genderError"></div>
+        <div class="error" id="consumeError"></div>
       </div>
 
-      <!-- Question 7-->
+      <!-- Add remaining questions here... -->
+ <!-- Question 7-->
       <div class="question-block">
         <label>7.How long have you been consuming health drinks? <span class="required">*</span></label>
         <div class="options">
@@ -527,130 +543,122 @@
       </div>
 
       <!-- Rating Questions -->
-       <!-- Rating Questions -->
+      <div class="question-block rating-block" data-question="main">
+        <label>25. Please rate the following aspects of the health drink:</label>
 
-<div class="question-block rating-block" data-question="main">
-  <label>25. Please rate the following aspects of the health drink:</label>
+        <div class="sub-question">
+          <label>• Taste of the health drink:</label>
+          <div class="stars" data-name="taste"></div>
+        </div>
 
-  <div class="sub-question">
-    <label>• Taste of the health drink:</label>
-    <div class="stars" data-name="taste"></div>
-  </div>
+        <div class="sub-question">
+          <label>• Packaging:</label>
+          <div class="stars" data-name="packaging"></div>
+        </div>
 
-  <div class="sub-question">
-    <label>• Packaging:</label>
-    <div class="stars" data-name="packaging"></div>
-  </div>
+        <div class="sub-question">
+          <label>• Value for money:</label>
+          <div class="stars" data-name="value"></div>
+        </div>
 
-  <div class="sub-question">
-    <label>• Value for money:</label>
-    <div class="stars" data-name="value"></div>
-  </div>
+        <div class="sub-question">
+          <label>• Health benefits:</label>
+          <div class="stars" data-name="benefits"></div>
+        </div>
 
-  <div class="sub-question">
-    <label>• Health benefits:</label>
-    <div class="stars" data-name="benefits"></div>
-  </div>
+        <div class="sub-question">
+          <label>• Overall satisfaction:</label>
+          <div class="stars" data-name="satisfaction"></div>
+        </div>
+      </div>
+    </form>
 
-  <div class="sub-question">
-    <label>• Overall satisfaction:</label>
-    <div class="stars" data-name="satisfaction"></div>
-  </div>
-</div>
+    <div class="footer">
+      <div class="footer-container">
+        <div class="footer-top">
+          <button onclick="submitForm()">Submit</button>
+          <button id="openModalBtn">Clear Form</button>
 
+          <!-- Modal -->
+          <div id="clearFormModal" class="modal">
+            <div class="modal-content">
+              <h2>Clear form?</h2>
+              <p>This will remove your answers from all questions, and cannot be undone.</p>
+              <div class="modal-actions">
+                <button id="cancelBtn">Cancel</button>
+                <button id="confirmClearBtn" class="danger">Clear form</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="footer-small">
+          Never submit passwords through Google Forms.
+        </div>
 
- </form>
+        <div class="footer-links" style="margin-top: 10px;">
+          This content is neither created nor endorsed by Google. - 
+          <a href="#">Contact form owner</a> - 
+          <a href="#">Terms of Service</a> - 
+          <a href="#">Privacy Policy</a>
+        </div>
 
-     <div class="footer">
-    <div class="footer-container">
-      <div class="footer-top">
-        <button onclick="submitForm()">Submit</button>
-        <button id="openModalBtn">Clear Form</button>
+        <div style="margin-top: 5px;">
+          Does this form look suspicious? <a href="#">Report</a>
+        </div>
 
-  <!-- Modal -->
-  <div id="clearFormModal" class="modal">
-    <div class="modal-content">
-      <h2>Clear form?</h2>
-      <p>This will remove your answers from all questions, and cannot be undone.</p>
-      <div class="modal-actions">
-        <button id="cancelBtn">Cancel</button>
-        <button id="confirmClearBtn" class="danger">Clear form</button>
+        <div class="footer-logo">Google Forms</div>
       </div>
     </div>
   </div>
-        
-      </div>
-    
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const ratingBlocks = document.querySelectorAll(".stars");
 
+      ratingBlocks.forEach((block) => {
+        const name = block.dataset.name;
+        const hiddenInput = document.createElement("input");
+        hiddenInput.type = "hidden";
+        hiddenInput.name = `rating-${name}`;
+        hiddenInput.value = 0;
+        block.appendChild(hiddenInput);
 
-      <div class="footer-small">
-        Never submit passwords through Google Forms.
-      </div>
+        // Create 5 stars
+        for (let i = 5; i >= 1; i--) {
+          const star = document.createElement("span");
+          star.innerHTML = "&#9733;";
+          star.dataset.value = i;
+          block.appendChild(star);
 
-      <div class="footer-links" style="margin-top: 10px;">
-        This content is neither created nor endorsed by Google. - 
-        <a href="#">Contact form owner</a> - 
-        <a href="#">Terms of Service</a> - 
-        <a href="#">Privacy Policy</a>
-      </div>
+          star.addEventListener("mouseover", () => {
+            highlightStars(block, i);
+          });
 
-      <div style="margin-top: 5px;">
-        Does this form look suspicious? <a href="#">Report</a>
-      </div>
+          star.addEventListener("mouseout", () => {
+            highlightStars(block, hiddenInput.value);
+          });
 
-      <div class="footer-logo">Google Forms</div>
-    </div>
-  </div>
+          star.addEventListener("click", () => {
+            hiddenInput.value = i;
+            highlightStars(block, i);
+          });
+        }
+      });
 
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const ratingBlocks = document.querySelectorAll(".stars");
-
-    ratingBlocks.forEach((block) => {
-      const name = block.dataset.name;
-      const hiddenInput = document.createElement("input");
-      hiddenInput.type = "hidden";
-      hiddenInput.name = `rating-${name}`;
-      hiddenInput.value = 0;
-      block.appendChild(hiddenInput);
-
-      // Create 5 stars
-      for (let i = 5; i >= 1; i--) {
-        const star = document.createElement("span");
-        star.innerHTML = "&#9733;";
-        star.dataset.value = i;
-        block.appendChild(star);
-
-        star.addEventListener("mouseover", () => {
-          highlightStars(block, i);
-        });
-
-        star.addEventListener("mouseout", () => {
-          highlightStars(block, hiddenInput.value);
-        });
-
-        star.addEventListener("click", () => {
-          hiddenInput.value = i;
-          highlightStars(block, i);
+      function highlightStars(block, rating) {
+        const stars = block.querySelectorAll("span");
+        stars.forEach((star) => {
+          if (parseInt(star.dataset.value) <= rating) {
+            star.classList.add("selected");
+          } else {
+            star.classList.remove("selected");
+          }
         });
       }
     });
 
-    function highlightStars(block, rating) {
-      const stars = block.querySelectorAll("span");
-      stars.forEach((star) => {
-        if (parseInt(star.dataset.value) <= rating) {
-          star.classList.add("selected");
-        } else {
-          star.classList.remove("selected");
-        }
-      });
-    }
-  });
-  const openBtn = document.getElementById('openModalBtn');
+    const openBtn = document.getElementById('openModalBtn');
     const modal = document.getElementById('clearFormModal');
     const cancelBtn = document.getElementById('cancelBtn');
     const confirmBtn = document.getElementById('confirmClearBtn');
@@ -659,8 +667,8 @@
     cancelBtn.onclick = () => modal.style.display = 'none';
 
     confirmBtn.onclick = () => {
-      const form = document.getElementById('myForm');
-      form.reset(); // Clear all form fields
+      const form = document.getElementById('questionnaireForm');
+      form.reset();
       modal.style.display = 'none';
     };
 
@@ -669,66 +677,58 @@
         modal.style.display = 'none';
       }
     };
+
     function validateForm() {
-  const name = document.getElementById("name").value;
-  const grade = document.getElementById("grade").value;
+      const name = document.getElementById("name").value;
+      const grade = document.getElementById("classGrade").value;
 
-  // Make sure you have these elements in your HTML to show the errors
-  const nameerror = document.getElementById("nameerror");
-  const gradeerror = document.getElementById("gradeerror");
+      const nameError = document.getElementById("nameError");
+      const classError = document.getElementById("classError");
 
-  // Clear previous errors
-  nameerror.textContent = "";
-  gradeerror.textContent = "";
+      nameError.textContent = "";
+      classError.textContent = "";
 
-  let isValid = true;
+      let isValid = true;
 
-  // Validate name: should not be empty and should not contain numbers
-  if (name === "" || /\d/.test(name)) {
-    nameerror.textContent = "Please enter your name properly";
-    isValid = false;
-  }
-
-  // Validate grade: should not be empty
-  if (grade === "") {
-    gradeerror.textContent = "Please enter your class";
-    isValid = false;
-  }
-
-  return isValid;
-}
-
-function submitForm() {
-  const form = document.getElementById("questionnaireForm");
-  const formData = new FormData(form);
-
-  let responses = {};
-  formData.forEach((value, key) => {
-    if (responses[key]) {
-      if (!Array.isArray(responses[key])) {
-        responses[key] = [responses[key]];
+      if (name === "" || /\d/.test(name)) {
+        nameError.textContent = "Please enter your name properly";
+        isValid = false;
       }
-      responses[key].push(value);
-    } else {
-      responses[key] = value;
+
+      if (grade === "") {
+        classError.textContent = "Please enter your class";
+        isValid = false;
+      }
+
+      return isValid;
     }
-  });
 
-  // Retrieve existing responses
-  let allResponses = JSON.parse(localStorage.getItem("allResponses")) || [];
-  allResponses.push(responses);
+    function submitForm() {
+      const form = document.getElementById("questionnaireForm");
+      const formData = new FormData(form);
 
-  // Save back to localStorage
-  localStorage.setItem("allResponses", JSON.stringify(allResponses));
+      let responses = {};
+      formData.forEach((value, key) => {
+        if (responses[key]) {
+          if (!Array.isArray(responses[key])) {
+            responses[key] = [responses[key]];
+          }
+          responses[key].push(value);
+        } else {
+          responses[key] = value;
+        }
+      });
 
-  alert("✅ Response saved locally!");
-  form.reset(); // clear form after submission
-}
+      // For demonstration - in real app you'd send to server
+      console.log("Form responses:", responses);
+      alert("✅ Response submitted successfully!");
+      form.reset();
+    }
 
-   
-  
-
-</script>
-
+    function openAdmin() {
+      alert("Admin login clicked! In a real application, this would redirect to admin.html");
+      // window.location.href = "admin.html";
+    }
+  </script>
 </body>
 </html>
