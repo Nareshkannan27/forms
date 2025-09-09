@@ -1,0 +1,734 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>customer questionnaireForm</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #202124;
+    }
+
+    p.description {
+      color: #5f6368;
+    }
+
+    .question-block {
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background: #fff;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #202124;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .required {
+      color: red;
+    }
+
+    .options label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: normal;
+    }
+
+    .options input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    button {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .success-message {
+      margin-top: 20px;
+      color: green;
+      background: #e6f4ea;
+      padding: 10px;
+      border: 1px solid #a5d6a7;
+      border-radius: 4px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+.rating {
+  direction: rtl; /* Right to left for correct order */
+  display: inline-block;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
+
+  .stars span {
+    font-size: 30px;
+    color: lightgray;
+    transition: color 0.2s ease;
+  }
+
+  .stars span.selected,
+  .stars span.hovered {
+    color: gold;
+  }
+
+  .question-block {
+    margin-bottom: 20px;
+  }
+  .sub-question {
+  margin: 10px 0;
+}
+ .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 20px;
+      width: 300px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .modal-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button.danger {
+      background-color: #d93025;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+  .footer{
+  padding: 20px;
+  background-color: #f3efff;
+  text-align: center;
+  font-size: 14px;
+  color: #3c4043;
+  border-top: 1px solid #ddd;
+  position: relative;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  max-width: 700px;
+  margin: 0 auto 15px;
+}
+
+.footer button {
+  background-color: #673ab7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.footer a {
+  color: #673ab7;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #5f6368;
+  margin-top: 15px;
+}
+
+.footer-small {
+  font-size: 12px;
+  color: #5f6368;
+}
+
+.footer-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>A Study on Customer perception of various children's Health Drinks in Chidambaram Town</h2>
+    <p class="description">Please fill out the form. Fields marked with <span class="required">*</span> are required.</p>
+
+    <form id="questionnaireForm">
+      <!-- Question 1 -->
+      <div class="question-block">
+        <label for="name">1. Name <span class="required">*</span></label>
+        <input type="text" id="name" name="name" required />
+        <div class="error" id="nameError"></div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question-block">
+        <label>2. Gender <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="radio" name="gender" value="Male"> Male</label>
+          <label><input type="radio" name="gender" value="Female"> Female</label>
+          <label><input type="radio" name="gender" value="Other"> Other</label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+
+      <!-- Question 3-->
+      <div class="question-block">
+        <label>3.Age <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="radio" name="Age" value="Below 10"> Below 10</label>
+          <label><input type="radio" name="Age" value="10-12"> 10-12</label>
+          <label><input type="radio" name="Age" value="13-15"> 13-15</label>
+          <label><input type="radio" name="Age" value="16-18"> 16-18</label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+
+
+      <!-- Question 4-->
+        <div class="question-block">
+        <label for="class/Grade">4.class/Grade <span class="required">*</span></label>
+        <input type="text" id="class/Grade" name="class/Grade" required />
+        <div class="error" id="nameError"></div>
+      </div>
+    
+
+      <!-- Question 5-->
+      <div class="question-block">
+        <label>5.School type <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="radio" name="School type" value="Government"> Government</label>
+          <label><input type="radio" name="School type" value="Private"> private</label>
+          <label><input type="radio" name="School type" value="others"> Others</label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+
+      <!-- Question 6-->
+      <div class="question-block">
+        <label>6.Do you consume health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="radio" name="Do you consume health drinks?" value="Yes"> Yes </label>
+          <label><input type="radio" name="Do you consume health drinks?" value="No"> No</label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+
+      <!-- Question 7-->
+      <div class="question-block">
+        <label>7.How long have you been consuming health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="How long have you been consuming health drinks?" value="6 months"> 6 months</label>
+          <label><input type="checkbox" name="How long have you been consuming health drinks?" value="6-12 months"> 6-12 months</label>
+          <label><input type="checkbox" name="How long have you been consuming health drinks?" value="1-2 years"> 1-2 years</label>
+          <label><input type="checkbox" name="How long have you been consuming health drinks?" value="2 years"> 2 years </label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+
+      <!-- Question 8-->
+      <div class="question-block">
+        <label>8.How often  do you consume health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="How often  do you consume health drinks? " value="Daily"> Daily</label>
+          <label><input type="checkbox" name="How often  do you consume health drinks? " value="4-6 times/week"> 4-6 times/week </label>
+          <label><input type="checkbox" name="How often  do you consume health drinks?" value="1-3 times/week"> 1-3 times/week </label>
+          <label><input type="checkbox" name="How often  do you consume health drinks?" value="occasionally"> occasionally </label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+
+      <!-- Question 9-->
+      <div class="question-block">
+        <label>9.Typical serving size you consume each time:<span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="Typical serving size you consume each time:" value="Half cup"> Half cup </label>
+          <label><input type="checkbox" name="Typical serving size you consume each time:" value="One cup"> One cup </label>
+          <label><input type="checkbox" name="Typical serving size you consume each time:" value="more than one cup"> more than one cup </label>
+          <label><input type="checkbox" name="Typical serving size you consume each time:" value="Not sure"> Not sure</label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+
+      <!-- Question 10-->
+      <div class="question-block">
+        <label>10.How do you usually take the drink? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="How do you usually take the drink?" value="with milk"> with milk </label>
+          <label><input type="checkbox" name="How do you usually take the drink?" value="with water"> with water </label>
+          <label><input type="checkbox" name="How do you usually take the drink?" value="mixed in smothie"> mixed in smothie </label>
+          <label><input type="checkbox" name="How do you usually take the drink?" value="other"> other </label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+      <!-- Question 11-->
+      <div class="question-block">
+        <label>11.which health drinks do you consume often? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="which health drinks do you consume often?" value="Bournvita"> Bournvita </label>
+          <label><input type="checkbox" name="which health drinks do you consume often?" value="Horlicks"> Horlicks</label>
+          <label><input type="checkbox" name="which health drinks do you consume often?" value="Complan"> Complan</label>
+          <label><input type="checkbox" name="which health drinks do you consume often?" value="others"> others </label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+      <!-- Question 12-->
+      <div class="question-block">
+        <label>12.Who influenced your choice of health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="Who influenced your choice of health drinks?" value="Parents"> Parents </label>
+          <label><input type="checkbox" name="Who influenced your choice of health drinks?" value="Friends"> Friends</label>
+          <label><input type="checkbox" name="Who influenced your choice of health drinks?" value="Advertisements"> Advertisements </label>
+          <label><input type="checkbox" name="Who influenced your choice of health drinks?" value="Others"> Others </label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+
+      <!-- Question 13-->
+      <div class="question-block">
+        <label>13.why do you consume health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="why do you consume health drinks?" value="Improve energy"> Improve energy</label>
+          <label><input type="checkbox" name="why do you consume health drinks?" value="Help in growth"> Help in growth </label>
+          <label><input type="checkbox" name="why do you consume health drinks?" value="Better taste"> Better taste </label>
+          <label><input type="checkbox" name="why do you consume health drinks?" value="Doctor's advice"> Doctor's advice </label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+
+
+      <!-- Question 14-->
+      <div class="question-block">
+        <label>14.when do you ususally drink them? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="when do you ususally drink them?" value="Morning"> Morning </label>
+          <label><input type="checkbox" name="when do you ususally drink them?" value="Evening"> Evening </label>
+          <label><input type="checkbox" name="when do you ususally drink them?" value="Before/After sports"> Before/After sports </label>
+          <label><input type="checkbox" name="when do you ususally drink them?" value="Other"> Other </label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+
+
+      <!-- Question 15-->
+      <div class="question-block">
+        <label>15.Do you feel any improvement in your health after consuming health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="Do you feel any improvement in your health after consuming health drinks?" value="Yes"> Yes </label>
+          <label><input type="checkbox" name="Do you feel any improvement in your health after consuming health drinks?" value="No"> No</label>
+          <label><input type="checkbox" name="Do you feel any improvement in your health after consuming health drinks?" value="Not sure"> Not sure </label>
+          
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+      <!-- Question 16-->
+      <div class="question-block">
+        <label>16.If yes,What improvement have you noticed? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="If yes,What improvement have you noticed?" value="More energetic"> More energetic </label>
+          <label><input type="checkbox" name="If yes,What improvement have you noticed?" value="Better cocentration in studies"> Better cocentration in studies</label>
+          <label><input type="checkbox" name="If yes,What improvement have you noticed?" value="increased height/weight"> increased height/weight</label>
+          <label><input type="checkbox" name="If yes,What improvement have you noticed?" value="improved sport performance"> improved sport performance</label>
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+
+      <!-- Question 17-->
+      <div class="question-block">
+        <label>17.Are you aware of the nutritional benefits mentioned on the label of health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="radio" name="Are you aware of the nutritional benefits mentioned on the label of health drinks?" value="Yes"> Yes </label>
+          <label><input type="radio" name="Are you aware of the nutritional benefits mentioned on the label of health drinks?" value="No"> No </label>
+          
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+
+      <!-- Question 18-->
+      <div class="question-block">
+        <label>18.Do you feel the price of health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="Do you feel the price of health drinks?" value="Affordable"> Affordable</label>
+          <label><input type="checkbox" name="Do you feel the price of health drinks?" value="Expensive"> Expensive</label>
+          <label><input type="checkbox" name="Do you feel the price of health drinks?" value="Very expensive"> Very expensive</label>
+          </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+
+      <!-- Question 19-->
+      <div class="question-block">
+        <label>19.How do you compare health drinks to natural foods like fruits,milk and vegetables? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="How do you compare health drinks to natural foods like fruits,milk and vegetables?" value="Better"> Better</label>
+          <label><input type="checkbox" name="How do you compare health drinks to natural foods like fruits,milk and vegetables?" value="Equal"> Equal </label>
+          <label><input type="checkbox" name="How do you compare health drinks to natural foods like fruits,milk and vegetables?" value="Not as good"> Not as good</label>
+          
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+
+
+      <!-- Question 20-->
+      <div class="question-block">
+        <label>20.Do you think schools should provide awareness about healthy alternatives? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="radio" name="Do you think schools should provide awareness about healthy alternatives?" value="Yes"> Yes </label>
+          <label><input type="radio" name="Do you think schools should provide awareness about healthy alternatives?" value="No"> No</label>
+          
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+
+
+      <!-- Question 21-->
+      <div class="question-block">
+        <label>21.Do you feel addicted to health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="radio" name="Do you feel addicted to health drinks?" value="Yes"> Yes </label>
+          <label><input type="radio" name="Do you feel addicted to health drinks?" value="No"> No</label>
+          
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+
+      <!-- Question 22-->
+      <div class="question-block">
+        <label>22.Do doctors recommend your health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="radio" name="Do doctors recommend your health drinks?" value="yes"> Yes</label>
+          <label><input type="radio" name="Do doctors recommend your health drinks?" value="NO"> No</label>
+         
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+       
+
+      <!-- Question 23-->
+      <div class="question-block">
+        <label>23.How often do you currently consume health drinks? <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="checkbox" name="How often do you currently consume health drinks? " value="Never rarely"> Never rarely</label>
+          <label><input type="checkbox" name="How often do you currently consume health drinks? " value="Sometimes"> Sometimes</label>
+          <label><input type="checkbox" name="How often do you currently consume health drinks? " value="Daily"> Daily</label>
+          
+        </div>
+        <div class="error" id="genderError"></div>
+    </div>
+       
+
+    <!-- Question 24-->
+      <div class="question-block">
+        <label>24.My parents discuss healthy drinks choices with me: <span class="required">*</span></label>
+        <div class="options">
+          <label><input type="radio" name="My parents discuss healthy drinks choices with me:" value="Agree"> Agree</label>
+          <label><input type="radio" name="My parents discuss healthy drinks choices with me:" value="Disagree"> Disagree</label>
+
+        </div>
+        <div class="error" id="genderError"></div>
+      </div>
+
+      <!-- Rating Questions -->
+       <!-- Rating Questions -->
+
+<div class="question-block rating-block" data-question="main">
+  <label>25. Please rate the following aspects of the health drink:</label>
+
+  <div class="sub-question">
+    <label>• Taste of the health drink:</label>
+    <div class="stars" data-name="taste"></div>
+  </div>
+
+  <div class="sub-question">
+    <label>• Packaging:</label>
+    <div class="stars" data-name="packaging"></div>
+  </div>
+
+  <div class="sub-question">
+    <label>• Value for money:</label>
+    <div class="stars" data-name="value"></div>
+  </div>
+
+  <div class="sub-question">
+    <label>• Health benefits:</label>
+    <div class="stars" data-name="benefits"></div>
+  </div>
+
+  <div class="sub-question">
+    <label>• Overall satisfaction:</label>
+    <div class="stars" data-name="satisfaction"></div>
+  </div>
+</div>
+
+
+
+ </form>
+
+     <div class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <button onclick="submitForm()">Submit</button>
+        <button id="openModalBtn">Clear Form</button>
+
+  <!-- Modal -->
+  <div id="clearFormModal" class="modal">
+    <div class="modal-content">
+      <h2>Clear form?</h2>
+      <p>This will remove your answers from all questions, and cannot be undone.</p>
+      <div class="modal-actions">
+        <button id="cancelBtn">Cancel</button>
+        <button id="confirmClearBtn" class="danger">Clear form</button>
+      </div>
+    </div>
+  </div>
+        
+      </div>
+    
+
+
+
+      <div class="footer-small">
+        Never submit passwords through Google Forms.
+      </div>
+
+      <div class="footer-links" style="margin-top: 10px;">
+        This content is neither created nor endorsed by Google. - 
+        <a href="#">Contact form owner</a> - 
+        <a href="#">Terms of Service</a> - 
+        <a href="#">Privacy Policy</a>
+      </div>
+
+      <div style="margin-top: 5px;">
+        Does this form look suspicious? <a href="#">Report</a>
+      </div>
+
+      <div class="footer-logo">Google Forms</div>
+    </div>
+  </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const ratingBlocks = document.querySelectorAll(".stars");
+
+    ratingBlocks.forEach((block) => {
+      const name = block.dataset.name;
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = `rating-${name}`;
+      hiddenInput.value = 0;
+      block.appendChild(hiddenInput);
+
+      // Create 5 stars
+      for (let i = 5; i >= 1; i--) {
+        const star = document.createElement("span");
+        star.innerHTML = "&#9733;";
+        star.dataset.value = i;
+        block.appendChild(star);
+
+        star.addEventListener("mouseover", () => {
+          highlightStars(block, i);
+        });
+
+        star.addEventListener("mouseout", () => {
+          highlightStars(block, hiddenInput.value);
+        });
+
+        star.addEventListener("click", () => {
+          hiddenInput.value = i;
+          highlightStars(block, i);
+        });
+      }
+    });
+
+    function highlightStars(block, rating) {
+      const stars = block.querySelectorAll("span");
+      stars.forEach((star) => {
+        if (parseInt(star.dataset.value) <= rating) {
+          star.classList.add("selected");
+        } else {
+          star.classList.remove("selected");
+        }
+      });
+    }
+  });
+  const openBtn = document.getElementById('openModalBtn');
+    const modal = document.getElementById('clearFormModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const confirmBtn = document.getElementById('confirmClearBtn');
+
+    openBtn.onclick = () => modal.style.display = 'block';
+    cancelBtn.onclick = () => modal.style.display = 'none';
+
+    confirmBtn.onclick = () => {
+      const form = document.getElementById('myForm');
+      form.reset(); // Clear all form fields
+      modal.style.display = 'none';
+    };
+
+    window.onclick = (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+    function validateForm() {
+  const name = document.getElementById("name").value;
+  const grade = document.getElementById("grade").value;
+
+  // Make sure you have these elements in your HTML to show the errors
+  const nameerror = document.getElementById("nameerror");
+  const gradeerror = document.getElementById("gradeerror");
+
+  // Clear previous errors
+  nameerror.textContent = "";
+  gradeerror.textContent = "";
+
+  let isValid = true;
+
+  // Validate name: should not be empty and should not contain numbers
+  if (name === "" || /\d/.test(name)) {
+    nameerror.textContent = "Please enter your name properly";
+    isValid = false;
+  }
+
+  // Validate grade: should not be empty
+  if (grade === "") {
+    gradeerror.textContent = "Please enter your class";
+    isValid = false;
+  }
+
+  return isValid;
+}
+
+function submitForm() {
+  const form = document.getElementById("questionnaireForm");
+  const formData = new FormData(form);
+
+  let responses = {};
+  formData.forEach((value, key) => {
+    if (responses[key]) {
+      if (!Array.isArray(responses[key])) {
+        responses[key] = [responses[key]];
+      }
+      responses[key].push(value);
+    } else {
+      responses[key] = value;
+    }
+  });
+
+  // Retrieve existing responses
+  let allResponses = JSON.parse(localStorage.getItem("allResponses")) || [];
+  allResponses.push(responses);
+
+  // Save back to localStorage
+  localStorage.setItem("allResponses", JSON.stringify(allResponses));
+
+  alert("✅ Response saved locally!");
+  form.reset(); // clear form after submission
+}
+
+   
+  
+
+</script>
+
+</body>
+</html>
